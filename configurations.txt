@@ -1,0 +1,4 @@
+order-service = mysql = port = 3307
+order-service = port = 8081
+inventory-service = mysql = port = 3308
+inventory-service = port = 8082
