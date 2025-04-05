@@ -1,2 +1,3 @@
 .idea
 docker-dep-up.bat
+docker-dep-down.bat
