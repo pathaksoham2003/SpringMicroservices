@@ -24,6 +24,7 @@ public class ProductService {
     public Product createProduct(ProductRequest productRequest) {
         Product product = Product.builder()
                 .name(productRequest.name())
+                .skuCode(productRequest.skuCode())
                 .description(productRequest.description())
                 .price(productRequest.price())
                 .build();
@@ -33,7 +34,7 @@ public class ProductService {
     }
 
     public List<ProductResponse> getProducts() {
-        List<ProductResponse> products = productRepository.findAll().stream().map(product -> new ProductResponse(product.getId(),product.getName(),product.getDescription(),product.getPrice())).toList();
+        List<ProductResponse> products = productRepository.findAll().stream().map(product -> new ProductResponse(product.getId(),product.getName(),product.getSkuCode(),product.getDescription(),product.getPrice())).toList();
         log.info("Fetched all products successfully");
         return products;
     }

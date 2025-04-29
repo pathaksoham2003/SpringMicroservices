@@ -28,7 +28,7 @@ public class OrderController {
             dbsResponse.setMessage("Order placed successfully");
             return ResponseEntity.status(HttpStatus.CREATED).body(dbsResponse);
         }catch (Exception ex) {
-            System.out.println(ex.getStackTrace());
+            ex.printStackTrace();
             dbsResponse.setMessage(ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(dbsResponse);

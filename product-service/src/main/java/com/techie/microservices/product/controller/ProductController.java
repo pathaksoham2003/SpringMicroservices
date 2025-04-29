@@ -20,35 +20,16 @@ public class ProductController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<DBSResponse<Product>> createProduct(@RequestBody ProductRequest productRequest) {
-        DBSResponse<Product> dbsResponse = new DBSResponse<Product>();
-        try {
-            Product product = productService.createProduct(productRequest);
-            dbsResponse.setData(product);
-            dbsResponse.setMessage("Product created successfully");
-            return ResponseEntity.status(HttpStatus.CREATED)
-                    .body(dbsResponse);
-        } catch (Exception e) {
-            dbsResponse.setMessage(e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(dbsResponse);
-        }
+    public void createProduct(@RequestBody ProductRequest productRequest) {
+        productService.createProduct(productRequest);
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<DBSResponse<List<ProductResponse>>> getProducts() {
-        DBSResponse<List<ProductResponse>> dbsResponse = new DBSResponse<List<ProductResponse>>();
-        try {
-            List<ProductResponse> product = productService.getProducts();
-            dbsResponse.setData(product);
-            dbsResponse.setMessage("Fetched all products successfully");
-            return ResponseEntity.status(HttpStatus.OK)
-                    .body(dbsResponse);
-        } catch (Exception e) {
-            dbsResponse.setMessage(e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(dbsResponse);
-        }
+    public DBSResponse<List<ProductResponse>> getProducts() {
+        DBSResponse<List<ProductResponse>> dbsResponse = new DBSResponse<>();
+        dbsResponse.setData(productService.getProducts());
+        dbsResponse.setMessage("Got the products successfully");
+        return dbsResponse;
     }
 }
